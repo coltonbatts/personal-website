@@ -80,12 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
         textObserver.observe(element);
     });
 
-    // Rotating Text Animation
+    // Rotating Text
     const rotatingTexts = [
-        'SOFTWARE ENGINEER',
-        'UI/UX DESIGNER',
-        'CREATIVE DEVELOPER',
-        'PROBLEM SOLVER'
+        'DESIGNER & SOFTWARE DEVELOPER',
+        'BASED IN FORT WORTH, TX',
+        'CRAFTING DIGITAL EXPERIENCES'
     ];
 
     let currentIndex = 0;
