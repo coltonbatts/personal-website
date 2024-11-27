@@ -82,26 +82,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Rotating Text
     const rotatingTexts = [
-        'DESIGNER & SOFTWARE DEVELOPER',
-        'BASED IN FORT WORTH, TX',
-        'CRAFTING DIGITAL EXPERIENCES'
+        'SOFTWARE ENGINEER',
+        'UI/UX DESIGNER',
+        'CREATIVE DEVELOPER',
+        'PROBLEM SOLVER'
     ];
 
     let currentIndex = 0;
     const rotatingElement = document.querySelector('.rotating-text');
 
     const updateRotatingText = () => {
-        rotatingElement.classList.remove('active');
-        
-        setTimeout(() => {
-            rotatingElement.textContent = rotatingTexts[currentIndex];
-            rotatingElement.classList.add('active');
-            currentIndex = (currentIndex + 1) % rotatingTexts.length;
-        }, 300);
+        if (rotatingElement) {
+            rotatingElement.classList.remove('active');
+            
+            setTimeout(() => {
+                rotatingElement.textContent = rotatingTexts[currentIndex];
+                rotatingElement.classList.add('active');
+                currentIndex = (currentIndex + 1) % rotatingTexts.length;
+            }, 300);
+        }
     };
 
-    updateRotatingText();
-    setInterval(updateRotatingText, 2000);
+    if (rotatingElement) {
+        updateRotatingText();
+        setInterval(updateRotatingText, 2000);
+    }
 
     // Project Hover Animation
     const projectItems = document.querySelectorAll('.project-item');
