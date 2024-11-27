@@ -33,54 +33,18 @@ document.addEventListener('DOMContentLoaded', () => {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
 
-    // Video overlay animation
-    const videoOverlay = document.querySelector('.video-overlay');
-    if (videoOverlay) {
-        // Show overlay when page loads
-        setTimeout(() => {
-            videoOverlay.classList.add('show');
-            
-            // Hide overlay after 3 seconds
-            setTimeout(() => {
-                videoOverlay.classList.remove('show');
-            }, 3000);
-        }, 1000);
+    // Immediately reveal the hero text
+    const splitText = document.querySelector('.split-text');
+    if (splitText) {
+        splitText.classList.add('revealed');
     }
 
-    // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
+    const titleBar = document.querySelector('.title-bar');
+    if (titleBar) {
+        titleBar.classList.add('revealed');
+    }
 
-    // Text Reveal Animation
-    const revealText = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
-            }
-        });
-    };
-
-    const textObserver = new IntersectionObserver(revealText, {
-        threshold: 0.5,
-        rootMargin: '0px'
-    });
-
-    document.querySelectorAll('.reveal-text, .split-text, .header-line').forEach(element => {
-        textObserver.observe(element);
-    });
-
-    // Rotating Text
+    // Rotating Text Animation
     const rotatingTexts = [
         'SOFTWARE ENGINEER',
         'UI/UX DESIGNER',
@@ -123,6 +87,54 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('mouseleave', () => {
             image.style.transform = 'scale(1)';
             info.style.transform = 'translateY(100%)';
+        });
+    });
+
+    // Text reveal animation
+    const revealText = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+
+    const textObserver = new IntersectionObserver(revealText, {
+        threshold: 0.5,
+        rootMargin: '0px'
+    });
+
+    // Observe other reveal elements
+    document.querySelectorAll('.reveal-text, .header-line').forEach(element => {
+        textObserver.observe(element);
+    });
+
+    // Video overlay animation
+    const videoOverlay = document.querySelector('.video-overlay');
+    if (videoOverlay) {
+        // Show overlay when page loads
+        setTimeout(() => {
+            videoOverlay.classList.add('show');
+            
+            // Hide overlay after 3 seconds
+            setTimeout(() => {
+                videoOverlay.classList.remove('show');
+            }, 3000);
+        }, 1000);
+    }
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
     });
 
