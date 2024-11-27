@@ -23,6 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Video overlay animation
+    const videoOverlay = document.querySelector('.video-overlay');
+    if (videoOverlay) {
+        // Show overlay when page loads
+        setTimeout(() => {
+            videoOverlay.classList.add('show');
+            
+            // Hide overlay after 3 seconds
+            setTimeout(() => {
+                videoOverlay.classList.remove('show');
+            }, 3000);
+        }, 1000);
+    }
+
     // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
