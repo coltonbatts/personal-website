@@ -519,6 +519,76 @@ body {
     }
 }
 
+/* Newsletter Signup */
+.newsletter-signup {
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 2rem;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.newsletter-form input[type="email"] {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    border: 2px solid var(--black);
+    background: var(--off-white);
+    color: var(--black);
+}
+
+.newsletter-form input[type="email"]::placeholder {
+    color: #666;
+}
+
+.newsletter-form button {
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border: 2px solid var(--black);
+    background: var(--off-white);
+    color: var(--black);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background: var(--black);
+    color: var(--off-white);
+}
+
+#newsletter-message {
+    text-align: center;
+    font-size: 0.9rem;
+    min-height: 1.5em;
+}
+
+#newsletter-message.success {
+    color: #2ecc71;
+}
+
+#newsletter-message.error {
+    color: #e74c3c;
+}
+
+@media (max-width: 768px) {
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form input[type="email"],
+    .newsletter-form button {
+        width: 100%;
+    }
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
     .hero-text h1 {

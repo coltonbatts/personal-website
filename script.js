@@ -350,4 +350,45 @@ document.addEventListener('DOMContentLoaded', () => {
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Newsletter Form
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterMessage = document.getElementById('newsletter-message');
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('subscriber-email').value;
+            
+            try {
+                const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        service_id: 'YOUR_SERVICE_ID',
+                        template_id: 'YOUR_TEMPLATE_ID',
+                        user_id: 'YOUR_PUBLIC_KEY',
+                        template_params: {
+                            to_email: 'colton@coltonbatts.com',
+                            subscriber_email: email,
+                            message: `New newsletter subscription from: ${email}`
+                        }
+                    })
+                });
+
+                if (response.ok) {
+                    newsletterMessage.textContent = 'Thanks for subscribing!';
+                    newsletterMessage.className = 'success';
+                    newsletterForm.reset();
+                } else {
+                    throw new Error('Failed to subscribe');
+                }
+            } catch (error) {
+                newsletterMessage.textContent = 'Something went wrong. Please try again.';
+                newsletterMessage.className = 'error';
+            }
+        });
+    }
 });
