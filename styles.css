@@ -402,8 +402,11 @@ nav {
 
 .social-links {
     display: flex;
-    gap: 4rem;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 0 1rem;
 }
 
 .social-links a {
@@ -416,8 +419,25 @@ nav {
     letter-spacing: -1px;
 }
 
-.social-links a:hover {
-    transform: skew(-10deg) translateY(-10px);
+@media (max-width: 768px) {
+    .social-links {
+        gap: 1rem;
+    }
+    
+    .social-links a {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-links {
+        gap: 0.8rem;
+    }
+    
+    .social-links a {
+        font-size: 1.5rem;
+        letter-spacing: -0.5px;
+    }
 }
 
 .contact-button {
