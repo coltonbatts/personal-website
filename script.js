@@ -3,37 +3,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.querySelector('.menu-btn');
     const navOverlay = document.querySelector('.nav-overlay');
     const navLinks = document.querySelectorAll('.nav-link');
-    let isMenuOpen = false;
 
-    const closeMenu = () => {
-        isMenuOpen = false;
-        navOverlay.classList.remove('active');
-        menuBtn.textContent = 'MENU';
-    };
-
-    const toggleMenu = (e) => {
-        e.stopPropagation(); // Prevent click from bubbling to document
-        isMenuOpen = !isMenuOpen;
+    menuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
         navOverlay.classList.toggle('active');
-        menuBtn.textContent = isMenuOpen ? '×' : 'MENU';
-    };
+    });
+
+    // Close menu when clicking a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navOverlay.classList.remove('active');
+        });
+    });
 
     // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (isMenuOpen && !navOverlay.contains(e.target) && e.target !== menuBtn) {
-            closeMenu();
+    document.addEventListener('click', function(e) {
+        if (!navOverlay.contains(e.target) && !menuBtn.contains(e.target)) {
+            navOverlay.classList.remove('active');
         }
-    });
-
-    // Prevent clicks inside menu from closing it
-    navOverlay.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-
-    menuBtn.addEventListener('click', toggleMenu);
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
     });
 
     // Smooth Scrolling
