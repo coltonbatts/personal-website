@@ -91,8 +91,10 @@
             </div>
             <div class="contact-content">
                 <div class="newsletter-signup">
-                    <form id="newsletter-form" class="newsletter-form">
-                        <input type="email" id="subscriber-email" placeholder="Enter your email" required>
+                    <form action="https://formsubmit.co/colton@coltonbatts.com" method="POST" class="newsletter-form">
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                        <input type="hidden" name="_subject" value="New Newsletter Subscription">
+                        <input type="hidden" name="_next" value="https://coltonbatts.com?subscribed=true">
                         <button type="submit">Subscribe</button>
                     </form>
                     <div id="newsletter-message"></div>
@@ -107,7 +109,6 @@
         </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

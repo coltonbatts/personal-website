@@ -23,6 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Check for newsletter subscription success
+    const urlParams = new URLSearchParams(window.location.search);
+    const newsletterMessage = document.getElementById('newsletter-message');
+    if (urlParams.get('subscribed') === 'true' && newsletterMessage) {
+        newsletterMessage.textContent = 'Thanks for subscribing!';
+        newsletterMessage.className = 'success';
+        // Remove the query parameter
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
     // Video overlay animation
     const videoOverlay = document.querySelector('.video-overlay');
     if (videoOverlay) {
